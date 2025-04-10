@@ -13,7 +13,9 @@ module.exports = {
         }),
         logs: id => buildOption(d.root.GET, d.container.logs(id)),
         top: id => buildOption(d.root.GET, d.container.top(id)),
-        list: () => buildOption(d.root.GET, d.container.list())
+        list: () => buildOption(d.root.GET, d.container.list()),
+        archiveGet: id => buildOption(d.root.GET, d.container.archive(id)),
+        archiveInfo: id => buildOption(d.root.HEAD, d.container.archive(id)),
     },
     image: {
         list: () => buildOption(d.root.GET, d.image.list()),

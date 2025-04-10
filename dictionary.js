@@ -7,9 +7,11 @@ const d = {
     top: 'top',
     list: 'list',
     json: 'json',
+    archive: 'archive',
     events: 'events',
     POST: 'POST',
-    GET: 'GET'
+    GET: 'GET',
+    HEAD: 'HEAD'
 };
 
 const headers = {
@@ -26,7 +28,8 @@ module.exports = {
         attach: id => buildReduce([d.containers, id, d.attach]),
         logs: id => buildReduce([d.containers, id, d.logs]),
         top: id => buildReduce([d.containers, id, d.top]),
-        list: () => buildReduce([d.containers, d.json])
+        list: () => buildReduce([d.containers, d.json]),
+        archive: id => buildReduce([d.containers, id, d.archive])
     },
     image: {
         list: () => buildReduce([d.images, d.json]),

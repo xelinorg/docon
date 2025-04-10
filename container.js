@@ -10,16 +10,26 @@ const containerAttach = (id = '', options = {}) => {
 }
 
 const containerLogs = (id = '', options = {}) => {
-    return httpDo(o.container.logs(id), options)
+    return httpDo(o.container.logs(id), options.params)
 };
 
 const conatinerTop = (id = '', options = {}) => {
     return httpDo(o.container.top(id), options)
 };
 
+const containerArchiveGet = (id = '', options = {}) => {
+    return httpDo(o.container.archiveGet(id), options.params)
+};
+
+const containerArchiveInfo = (id = '', options = {}) => {
+    return httpDo(o.container.archiveInfo(id), options.params)
+};
+
 module.exports = {
     list: containerList,
     attach: containerAttach,
     logs: containerLogs,
-    top: conatinerTop
+    top: conatinerTop,
+    archiveGet: containerArchiveGet,
+    archiveInfo: containerArchiveInfo
 }
