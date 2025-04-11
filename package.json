@@ -1,7 +1,7 @@
 {
-  "name": "docker-api",
+  "name": "docon",
   "version": "0.1.0",
-  "description": "docker monitor api",
+  "description": "docker engine api connector",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
