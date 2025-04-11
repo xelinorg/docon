@@ -21,9 +21,9 @@ const headers = {
     }
 };
 
-const buildReduce = parts => parts.reduce((acc, cur) => acc.concat(d.slash, cur), '')
+const buildReduce = parts => parts.reduce((acc, cur) => acc.concat(d.slash, cur), '');
 
-module.exports = {
+const dict = {
     container: {
         attach: id => buildReduce([d.containers, id, d.attach]),
         logs: id => buildReduce([d.containers, id, d.logs]),
@@ -38,4 +38,6 @@ module.exports = {
     monitor: () => buildReduce([d.events]),
     root: d,
     headers
-}
+};
+
+export { dict as default };

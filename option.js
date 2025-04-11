@@ -1,11 +1,11 @@
-const d = require('./dictionary');
+import { default as d } from './dictionary.js';
 
 const buildOption = (method, path) => ({
     method,
     path
-})
+});
 
-module.exports = {
+const opt =  {
     container: {
         attach:  id => ({
             ...buildOption(d.root.POST, d.container.attach(id)),
@@ -24,4 +24,6 @@ module.exports = {
     monitor: () => ({
         ...buildOption(d.root.GET, d.monitor())
     })
-}
+};
+
+export { opt as default };

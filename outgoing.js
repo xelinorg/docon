@@ -1,4 +1,4 @@
-const http = require('http');
+import http from 'http';
 
 const baseOptions = {
     socketPath: '/run/docker.sock',
@@ -65,8 +65,8 @@ const httpDo = (options, params) => {
             const resdata = [];
             response.on('data', chunk => {
                 console.log(chunk.toString());
-                resdata.push(chunk)
-            })
+                resdata.push(chunk);
+            });
             response.on('end', () => {
                 const rawdata = resdata.toString();
                 resolve(JSON.parse(rawdata));
@@ -74,8 +74,8 @@ const httpDo = (options, params) => {
         });
 
         request.end();
-    })
-}
+    });
+};
 
 const httpDoStream = (options, params) => {
     return new Promise((resolve, reject) => {
@@ -91,7 +91,7 @@ const httpDoStream = (options, params) => {
             });
         });
 
-        request.on('upgrade', (res, socket, head) => {
+        request.on('upgrade', (res, socket) => {
             const resdata = [];
             socket.on('data', chunk => {
                 const frames = readStream(chunk);
@@ -106,13 +106,13 @@ const httpDoStream = (options, params) => {
                 console.log('httpDoStream on end');
                 resolve(resdata);
             });
-        })
+        });
 
         request.end();
-    })
+    });
 };
 
-module.exports = {
+export {
     httpDo,
     httpDoStream
-}
+};
