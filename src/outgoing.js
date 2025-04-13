@@ -5,6 +5,9 @@ const baseOptions = {
 };
 
 const buildParams = (params) => {
+    if (!params) {
+        return '';
+    }
     const build = ['?'];
     Object.keys(params).reduce((acc, cur) => {
         let seq;
@@ -49,7 +52,7 @@ const readStream = (chunk) => {
     return frames;
 };
 
-const httpDo = (options, params) => {
+const httpDo = (options, params, consumer) => {
     return new Promise((resolve, reject) => {
         const doOptions = { 
             ...baseOptions,
@@ -65,6 +68,9 @@ const httpDo = (options, params) => {
             const resdata = [];
             response.on('data', chunk => {
                 console.log(chunk.toString());
+                if (consumer) {
+                    consumer.write(chunk.toString());
+                }
                 resdata.push(chunk);
             });
             response.on('end', () => {

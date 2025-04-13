@@ -4,8 +4,8 @@ import container from'./container.js';
 import image from './image.js';
 
 
-const monitor =  (options = {}) => {
-    return httpDo(o.monitor(), options);
+const monitor =  (options = { params: {}, consumer: undefined }) => {
+    return httpDo(o.monitor(), options.params, options.consumer);
 };
 
 export {
