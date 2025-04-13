@@ -26,7 +26,6 @@ const readStream = (chunk) => {
     const frames = [];
     let index = 0;
     while (index < chunk.length) {
-        let index;
         if (frames.length) {
             index = frames.reduce((acc, cur) => {
                 acc = acc + cur.header.length + 8;
